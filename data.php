@@ -6,6 +6,7 @@
             <th scope="col">Jenis Kelamin</th>
             <th scope="col">Kontak</th>
             <th scope="col">Alamat</th>
+            <th scope="col">Opsi</th>
         </tr>
     </thead>
     <tbody>
@@ -20,7 +21,10 @@
                         <td><?php echo $d['user_nama']; ?></td>
                         <td><?php echo $d['user_kelamin']; ?></td>
                         <td><?php echo $d['user_kontak']; ?></td>
-                        <td><?php echo $d['user_alamat']; ?></td>                        
+                        <td><?php echo $d['user_alamat']; ?></td>   
+                        <td>                         
+                            <button id="<?php echo $d['user_id']; ?>" class="btn btn-danger btn-sm hapus_data"> <i class="fa fa-trash"></i> Hapus </button>
+                        </td>                     
                     </tr>
                 <?php
             }
