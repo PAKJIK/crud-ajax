@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
- 
 <head>       
 	<title>Malasngoding.com - CRUD AJAX PHP MYSQLI </title>
 	<meta charset="utf-8">
@@ -8,18 +7,18 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
- 
+
 <body>
 	<br>
 	<div class="container">
-		<center><h2>CRUD AJAX PHP MYSQLI - HAPUS DATA</h2></center>
+		<center><h2>CRUD AJAX </h2></center>
 		<div class="row">           
 			<div class="col-5">
 				<div class="card">
 					<form id="form_input">
 						<div class="card-body">
 							<div class="form-group">
-								<label>Nama</label>								
+								<label>Nama</label>
 								<input type="text" class="form-control" id="nama" name="nama" placeholder="Nama">
 							</div>
 							<div class="form-group">
@@ -64,7 +63,7 @@ integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="ano
 		tampil_data();
 	});            
  
-	// tampilkan data        
+         //fungsi tampil data
 	function tampil_data() {
 		$.ajax({
 			url: 'data.php',
@@ -75,60 +74,58 @@ integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="ano
 		});
 	}
  
-	// tambah data
 	$("#tombol_simpan").click(function () {
             //validasi form
-		$('#form_input').validate({
-			rules: {
-				nama: {
-					required: true
-				},
-				kelamin: {
-					required: true
-				},
-				kontak: {
-					required: true
-				},
-				alamat: {
-					required: true
-				}
-			},             
-			submitHandler: function (form) {
-				$.ajax({
-					type: 'POST',
-					url: "simpan.php",
-					data: $('#form_input').serialize(),
-					success: function () {
+            $('#form_input').validate({
+                rules: {
+                    nama: {
+                        required: true
+                    },
+                    kelamin: {
+                        required: true
+                    },
+                    kontak: {
+                        required: true
+                    },
+                    alamat: {
+                        required: true
+                    }
+                },
+ 
+                // alert(nama);
+                //jika validasi sukses maka lakukan
+                submitHandler: function (form) {
+                    $.ajax({
+                        type: 'POST',
+                        url: "simpan.php",
+                        data: $('#form_input').serialize(),
+                        success: function () {
                             //setelah simpan data, update data terbaru
-						tampil_data()
-					}
-				});
+                            tampil_data()
+                        }
+                    });
                     //kosongkan form nama dan jurusan
-				document.getElementById("nama").value = "";
-				document.getElementById("kelamin").value = "";
-				document.getElementById("kontak").value = "";
-				document.getElementById("alamat").value = "";
-				return false;
-			}
-		});
+                    document.getElementById("nama").value = "";
+                    document.getElementById("kelamin").value = "";
+                    document.getElementById("kontak").value = "";
+                    document.getElementById("alamat").value = "";
+                    return false;
+                }
+            });
+        });
+
+        //hapus data
+        $(document).on('click', '.hapus_data', function(){
+	var id = $(this).attr('id');
+	$.ajax({
+		type: 'POST',
+		url: "hapus.php",
+		data: {id:id},			
+		success: function(response) {				
+			//setelah simpan data, update data terbaru
+			tampil_data()		
+		}
 	});
- 
- 
-	// hapus data
-	$(document).on('click', '.hapus_data', function(){		
-		var id = $(this).attr('id');
- 
-		$.ajax({
-			type: 'POST',
-			url: "hapus.php",
-			data: {id:id},			
-			success: function(response) {				
-				    //setelah simpan data, update data terbaru
-				tampil_data()		
-			}
-		});
-	});
- 
- 
+});
 </script>
 </html>

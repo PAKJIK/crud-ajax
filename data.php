@@ -1,12 +1,10 @@
 <table class="table table-striped">
     <thead>
         <tr>
-            <th scope="col">#</th>
             <th scope="col">Nama</th>
             <th scope="col">Jenis Kelamin</th>
             <th scope="col">Kontak</th>
             <th scope="col">Alamat</th>
-            <th scope="col">Opsi</th>
         </tr>
     </thead>
     <tbody>
